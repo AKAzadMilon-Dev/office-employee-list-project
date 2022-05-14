@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Container, Row, Col, Form, Button, Card} from 'react-bootstrap';
-const axios = require('axios');
+import axios from 'axios';
 
 const EmployeeList = () => {
 
@@ -11,7 +11,8 @@ const EmployeeList = () => {
 
     const hendleSubmit = async (e)=>{
         e.preventDefault()
-        await axios.get('http://localhost:8000/',{
+        console.log('Click')
+        await axios.post('http://localhost:8000/',{
             name: name,
             designation: designation,
             officetime: officetime,

@@ -1,13 +1,28 @@
 const express = require('express')
 const mongoose = require('mongoose');
+const employeeListDetails = require('./models/employeeListModel.js')
+var cors = require('cors')
 const app = express()
+
+app.use(cors())
+app.use(express.json())
 
 mongoose.connect('mongodb+srv://newproject:newproject@cluster0.qm7pw.mongodb.net/newproject?retryWrites=true&w=majority',()=>{
     console.log("DB Connected")
 });
 
-app.get('/', function (req, res) {
-  res.send('Hello World')
+app.post('/', function (req, res) {
+  const employeeDetails = {
+    name:req.body.name,
+    designation:req.body.designation,
+    officetime:req.body.officetime,
+    offday:req.body.offday
+  }
+
+  const detailsList = new employeeListDetails(employeeDetails)
+  detailsList.save()
+  console.log(req.body)
+  // res.send('Hello World')
 })
 
 app.listen(8000, (req, res)=>{
