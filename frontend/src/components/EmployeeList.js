@@ -1,7 +1,24 @@
-import React from 'react';
-import {Container, Row, Col, Form, Button, Card} from 'react-bootstrap'
+import React, {useState} from 'react';
+import {Container, Row, Col, Form, Button, Card} from 'react-bootstrap';
+const axios = require('axios');
 
 const EmployeeList = () => {
+
+    const [name, setName] = useState('')
+    const [designation, setDesignation] = useState('')
+    const [officetime, setOfficetime] = useState('')
+    const [offday, setOffday] = useState('')
+
+    const hendleSubmit = async (e)=>{
+        e.preventDefault()
+        await axios.get('http://localhost:8000/',{
+            name: name,
+            designation: designation,
+            officetime: officetime,
+            offday: offday
+        })
+    }
+
   return (
     <div>
         <Container>
@@ -22,24 +39,24 @@ const EmployeeList = () => {
                     <Form>
                         <Form.Group className="mb-3">
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your name" />
+                            <Form.Control type="text" placeholder="Enter your name" onChange={(e)=>setName(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3">
                             <Form.Label>Designation</Form.Label>
-                            <Form.Control type="text" placeholder="Designation" />
+                            <Form.Control type="text" placeholder="Designation" onChange={(e)=>setDesignation(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3">
                             <Form.Label>Office Time</Form.Label>
-                            <Form.Control type="text" placeholder="Office time" />
+                            <Form.Control type="text" placeholder="Office time" onChange={(e)=>setOfficetime(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3">
                             <Form.Label>Off Day</Form.Label>
-                            <Form.Control type="text" placeholder="Off day" />
+                            <Form.Control type="text" placeholder="Off day" onChange={(e)=>setOffday(e.target.value)} />
                         </Form.Group>
-                        <Button variant="primary" type="submit">
+                        <Button onClick={hendleSubmit} variant="primary" type="submit">
                             Submit
                         </Button>
                     </Form>
