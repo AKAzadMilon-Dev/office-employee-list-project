@@ -1,10 +1,10 @@
 
-import EmplyeeList from './components/EmplyeeList';
+import EmployeeList from './components/EmployeeList';
 
 function App() {
   return (
     <>
-      <EmplyeeList></EmplyeeList>
+      <EmployeeList></EmployeeList>
     </>
   );
 }

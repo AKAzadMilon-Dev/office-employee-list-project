@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Row, Col, Form, Button, Card} from 'react-bootstrap'
 
-const EmplyeeList = () => {
+const EmployeeList = () => {
   return (
     <div>
         <Container>
@@ -20,17 +20,24 @@ const EmplyeeList = () => {
                 </Col>
                 <Col lg={9}>
                     <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Group className="mb-3">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control type="text" placeholder="Enter your name" />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
+                        <Form.Group className="mb-3">
+                            <Form.Label>Designation</Form.Label>
+                            <Form.Control type="text" placeholder="Designation" />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Check me out" />
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Office Time</Form.Label>
+                            <Form.Control type="text" placeholder="Office time" />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Off Day</Form.Label>
+                            <Form.Control type="text" placeholder="Off day" />
                         </Form.Group>
                         <Button variant="primary" type="submit">
                             Submit
@@ -43,4 +50,4 @@ const EmplyeeList = () => {
   )
 }
 
-export default EmplyeeList
+export default EmployeeList
