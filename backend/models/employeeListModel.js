@@ -4,9 +4,10 @@ const {Schema} = mongoose;
 const employeeListSchema = Schema(
     {
         name: String,
-        Designation: String,
+        designation: String,
         officetime: String,
-        offday: String
+        offday: String,
+        mobile: String
     }
 )
 

@@ -16,9 +16,9 @@ app.post('/', function (req, res) {
     name:req.body.name,
     designation:req.body.designation,
     officetime:req.body.officetime,
-    offday:req.body.offday
+    offday:req.body.offday,
+    mobile:req.body.mobile
   }
-
   const detailsList = new employeeListDetails(employeeDetails)
   detailsList.save()
   console.log(req.body)
