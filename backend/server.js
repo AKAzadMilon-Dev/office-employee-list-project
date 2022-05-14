@@ -25,6 +25,11 @@ app.post('/', function (req, res) {
   // res.send('Hello World')
 })
 
+app.get('/employee', async (req, res)=>{
+  const employeeData = await employeeListDetails.find({})
+  res.send(employeeData)
+})
+
 app.listen(8000, (req, res)=>{
     console.log("port 8000 running")
 })
