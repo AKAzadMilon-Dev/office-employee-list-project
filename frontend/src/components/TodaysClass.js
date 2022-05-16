@@ -1,8 +1,24 @@
-import React from 'react';
-import {Container, Row, Col, Form, Button, Card, Table, Alert} from 'react-bootstrap';
+import axios from 'axios';
+import React, { useState } from 'react';
+import {Container, Row, Col, Form, Button, Card, Table,} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const TodaysClass = () => {
+
+    const [todayclass, setTodayclass] = useState([])
+    const [batch, setBatch] = useState('')
+    const [time, setTime] = useState('')
+    const [room, setRoom] = useState('')
+
+    const handleSubmit = async (e)=>{
+        e.preventDefault()
+        await axios.post('http://localhost:8000/',{
+            batch: batch,
+            time: time,
+            room: room
+        })
+    }
+
   return (
     <div style={{ background: "#112B3C"}}>
         <Container >
@@ -47,20 +63,20 @@ const TodaysClass = () => {
                         <Row className="mb-3">
                             <Form.Group as={Col} md="6">
                                 <Form.Label>Batch</Form.Label>
-                                <Form.Control type="text" name="batch" placeholder="Batch"/>
+                                <Form.Control type="text" name="batch" placeholder="Batch" onChange={(e)=>setBatch(e.target.value)}/>
                             </Form.Group>
 
                             <Form.Group as={Col} md="6">
                             <Form.Label>Time</Form.Label>
-                                <Form.Control type="text" placeholder="Time" name="time"/>
+                                <Form.Control type="text" placeholder="Time" name="time" onChange={(e)=>setTime(e.target.value)}/>
                             </Form.Group>
 
                             <Form.Group as={Col} md="12">
                             <Form.Label>Room</Form.Label>
-                                <Form.Control type="text" placeholder="Room"name="room"/>
+                                <Form.Control type="text" placeholder="Room" name="room" onChange={(e)=>setRoom(e.target.value)}/>
                             </Form.Group>
                         </Row>
-                        <Button className='w-100' type="submit">Submit</Button>
+                        <Button onClick={handleSubmit} className='w-100' type="submit">Submit</Button>
                     </Form>
                     <Row style={{marginTop:"50px"}}>
                         <Col lg={12}>
