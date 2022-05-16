@@ -1,8 +1,24 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import {Container, Row, Col, Form, Button, Card, Table, Alert} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const PostActivity = () => {
+
+    const [activity, setActivity] = useState([])
+    const [name, setName] = useState('')
+    const [hour, setHour] = useState('')
+    const [details, setDetails] = useState('')
+
+    const handleSubmit = async (e)=>{
+        e.preventDefault()
+        await axios.post('http://localhost:8000/', {
+            name: name,
+            hour: hour,
+            details: details
+        })
+    }
+
   return (
     <div style={{ background: "#112B3C"}}>
         <Container >
@@ -60,7 +76,7 @@ const PostActivity = () => {
                                 <Form.Control as="textarea" rows={3} placeholder="Active Details"/>
                             </Form.Group>
                             <div className="d-grid gap-2">
-                                <Button variant="primary" size="md">Submit</Button>
+                                <Button onClick={handleSubmit} variant="primary" size="md">Submit</Button>
                             </div>
                         </Row>
                     </Form>
