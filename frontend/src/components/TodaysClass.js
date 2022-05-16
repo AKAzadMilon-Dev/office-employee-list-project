@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import {Container, Row, Col, Form, Button, Card, Table,} from 'react-bootstrap';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const TodaysClass = () => {
@@ -12,6 +12,7 @@ const TodaysClass = () => {
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
+        console.log('Click')
         await axios.post('http://localhost:8000/',{
             batch: batch,
             time: time,

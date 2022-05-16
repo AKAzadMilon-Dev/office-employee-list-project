@@ -22,14 +22,7 @@ app.post('/', function (req, res) {
   }
   const detailsList = new employeeListDetails(employeeDetails)
   detailsList.save()
-})
 
-app.get('/employee', async (req, res)=>{
-  const employeeData = await employeeListDetails.find({})
-  res.send(employeeData)
-})
-
-app.post('/', function (req, res){
   const todayClass = {
     batch: req.body.batch,
     time: req.body.time,
@@ -37,6 +30,11 @@ app.post('/', function (req, res){
   }
   const todayDetails = new todayClassDetails(todayClass)
   todayDetails.save()
+})
+
+app.get('/employee', async (req, res)=>{
+  const employeeData = await employeeListDetails.find({})
+  res.send(employeeData)
 })
 
 app.listen(8000, ()=>{
