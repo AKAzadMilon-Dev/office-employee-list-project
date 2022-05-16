@@ -1,35 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Container, Row, Col, Form, Button, Card, Table, Alert} from 'react-bootstrap';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const EmployeeList = () => {
-    const [employee, setEmployee] = useState([])
-    const [name, setName] = useState('')
-    const [designation, setDesignation] = useState('')
-    const [officetime, setOfficetime] = useState('')
-    const [offday, setOffday] = useState('')
-    const [mobile, setMobile] = useState('')
-
-    const hendleSubmit = async (e)=>{
-        e.preventDefault()
-        await axios.post('http://localhost:8000/',{
-            name: name,
-            designation: designation,
-            officetime: officetime,
-            offday: offday,
-            mobile: mobile
-        })
-    }
-
-    useEffect(()=>{
-        async function employeeData(){
-            const data = await axios.get('http://localhost:8000/employee')
-            setEmployee(data.data)
-        }
-        employeeData()
-    })
-
+const ActivityList = () => {
   return (
     <div>
         <Container style={{marginTop:"50px"}}>
@@ -44,7 +17,9 @@ const EmployeeList = () => {
                             the card's content.
                             </Card.Text>
                             <div className="d-grid gap-2">
-                                <Button variant="primary" size="lg">Employee List</Button>
+                                <Link to='/employeelist'>
+                                    <Button className="w-100" variant="primary" size="lg">Employee List</Button>
+                                </Link>
                                 <Link to='/todaysclass'>
                                     <Button className="w-100" variant="primary" size="lg">Today's Class</Button>
                                 </Link>
@@ -65,35 +40,6 @@ const EmployeeList = () => {
                     </Card>
                 </Col>
                 <Col lg={9} >
-                    <Form className='w-50 mx-auto formStyle'>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your name" onChange={(e)=>setName(e.target.value)} />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3">
-                            <Form.Label>Designation</Form.Label>
-                            <Form.Control type="text" placeholder="Designation" onChange={(e)=>setDesignation(e.target.value)} />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3">
-                            <Form.Label>Office Time</Form.Label>
-                            <Form.Control type="text" placeholder="Office time" onChange={(e)=>setOfficetime(e.target.value)} />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3">
-                            <Form.Label>Off Day</Form.Label>
-                            <Form.Control type="text" placeholder="Off day" onChange={(e)=>setOffday(e.target.value)} />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3">
-                            <Form.Label>Mobile Number</Form.Label>
-                            <Form.Control type="text" placeholder="Mobile Number" onChange={(e)=>setMobile(e.target.value)} />
-                        </Form.Group>
-                        <div className="d-grid gap-2">
-                            <Button onClick={hendleSubmit} variant="primary" size="md">SEND</Button>
-                        </div>
-                    </Form>
                     <Row style={{marginTop:"50px"}}>
                         <Col lg={12}>
                             <Table striped bordered hover variant="success">
@@ -106,7 +52,7 @@ const EmployeeList = () => {
                                 <th>Mobile Number</th>
                                 </tr>
                             </thead>
-                            {employee.map(item=>(
+                            {/* {employee.map(item=>(
                                 <tbody key={item._id}>
                                     <tr >
                                         <td>{item.name}</td>
@@ -116,7 +62,7 @@ const EmployeeList = () => {
                                         <td>{item.mobile}</td>
                                     </tr>
                                 </tbody>
-                            ))}
+                            ))} */}
                             </Table>
                         </Col>
                     </Row>
@@ -127,4 +73,4 @@ const EmployeeList = () => {
   )
 }
 
-export default EmployeeList
+export default ActivityList

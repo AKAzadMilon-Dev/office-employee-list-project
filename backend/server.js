@@ -21,8 +21,6 @@ app.post('/', function (req, res) {
   }
   const detailsList = new employeeListDetails(employeeDetails)
   detailsList.save()
-  console.log(req.body)
-  // res.send('Hello World')
 })
 
 app.get('/employee', async (req, res)=>{
@@ -30,6 +28,6 @@ app.get('/employee', async (req, res)=>{
   res.send(employeeData)
 })
 
-app.listen(8000, (req, res)=>{
+app.listen(8000, ()=>{
     console.log("port 8000 running")
 })
