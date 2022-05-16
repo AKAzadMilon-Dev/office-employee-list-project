@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Container, Row, Col, Form, Button, Card, Table,} from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -12,13 +12,20 @@ const TodaysClass = () => {
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
-        console.log('Click')
         await axios.post('http://localhost:8000/',{
             batch: batch,
             time: time,
             room: room
         })
     }
+
+    useEffect(()=>{
+        async function todayClassData(){
+            const todaydata = await axios.get('http://localhost:8000/todayclasses')
+            setTodayclass(todaydata.data)
+        }
+        todayClassData()
+    })
 
   return (
     <div style={{ background: "#112B3C"}}>
@@ -89,17 +96,15 @@ const TodaysClass = () => {
                                     <th>Room</th>
                                 </tr>
                             </thead>
-                            {/* {employee.map(item=>(
+                            {todayclass.map(item=>(
                                 <tbody key={item._id}>
                                     <tr >
-                                        <td>{item.name}</td>
-                                        <td>{item.designation}</td>
-                                        <td>{item.officetime}</td>
-                                        <td>{item.offday}</td>
-                                        <td>{item.mobile}</td>
+                                        <td>{item.batch}</td>
+                                        <td>{item.time}</td>
+                                        <td>{item.room}</td>
                                     </tr>
                                 </tbody>
-                            ))} */}
+                            ))}
                             </Table>
                         </Col>
                     </Row>

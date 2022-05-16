@@ -37,6 +37,11 @@ app.get('/employee', async (req, res)=>{
   res.send(employeeData)
 })
 
+app.get('/todayclasses', async (req, res)=>{
+  const todayClassData = await todayClassDetails.find({})
+  res.send(todayClassData)
+})
+
 app.listen(8000, ()=>{
     console.log("port 8000 running")
 })
