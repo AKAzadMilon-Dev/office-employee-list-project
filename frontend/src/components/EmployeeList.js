@@ -31,20 +31,23 @@ const EmployeeList = () => {
     })
 
   return (
-    <div>
-        <Container style={{marginTop:"50px"}}>
+    <div style={{ background: "#112B3C"}}>
+        <Container >
             <Row>
                 <Col lg={3}>
-                    <Card style={{background:"#7968DC"}}>
+                    <Card style={{background:"#413F42"}}>
                     <Card.Img variant="top" src="./assets/images/men.jpg" />
-                        <Card.Body>
+                        <Card.Body className='textStyle'>
                             <Card.Title>Card Title</Card.Title>
                             <Card.Text>
                             Some quick example text to build on the card title and make up the bulk of
                             the card's content.
                             </Card.Text>
                             <div className="d-grid gap-2">
-                                <Button variant="primary" size="lg">Employee List</Button>
+                                <Link to='/'>
+                                    <Button className="w-100" variant="primary" size="lg">Home</Button>
+                                </Link>
+                                <Button active variant="primary" size="lg">Employee List</Button>
                                 <Link to='/todaysclass'>
                                     <Button className="w-100" variant="primary" size="lg">Today's Class</Button>
                                 </Link>
@@ -65,35 +68,36 @@ const EmployeeList = () => {
                     </Card>
                 </Col>
                 <Col lg={9} >
-                    <Form className='w-50 mx-auto formStyle'>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your name" onChange={(e)=>setName(e.target.value)} />
-                        </Form.Group>
+                    <Form className='textStyle'>
+                        <Row className="mb-3">
+                            <Form.Group as={Col} md="4">
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control type="text" name="name" placeholder="Name" onChange={(e)=>setName(e.target.value)}/>
+                            </Form.Group>
 
-                        <Form.Group className="mb-3">
-                            <Form.Label>Designation</Form.Label>
-                            <Form.Control type="text" placeholder="Designation" onChange={(e)=>setDesignation(e.target.value)} />
-                        </Form.Group>
+                            <Form.Group as={Col} md="4">
+                                <Form.Label>Designation</Form.Label>
+                                <Form.Control type="text" name="designation" placeholder="Designation" onChange={(e)=>setDesignation(e.target.value)}/>
+                            </Form.Group>
 
-                        <Form.Group className="mb-3">
-                            <Form.Label>Office Time</Form.Label>
-                            <Form.Control type="text" placeholder="Office time" onChange={(e)=>setOfficetime(e.target.value)} />
-                        </Form.Group>
+                            <Form.Group as={Col} md="4">
+                                <Form.Label>Office Time</Form.Label>
+                                <Form.Control type="text" name="0fficeTime" placeholder="Office Time" onChange={(e)=>setOfficetime(e.target.value)}/>
+                            </Form.Group>
 
-                        <Form.Group className="mb-3">
+                            <Form.Group as={Col} md="6">
                             <Form.Label>Off Day</Form.Label>
-                            <Form.Control type="text" placeholder="Off day" onChange={(e)=>setOffday(e.target.value)} />
-                        </Form.Group>
+                                <Form.Control type="text" placeholder="Off Day" name="offDay"  onChange={(e)=>setOffday(e.target.value)}/>
+                            </Form.Group>
 
-                        <Form.Group className="mb-3">
+                            <Form.Group as={Col} md="6">
                             <Form.Label>Mobile Number</Form.Label>
-                            <Form.Control type="text" placeholder="Mobile Number" onChange={(e)=>setMobile(e.target.value)} />
-                        </Form.Group>
-                        <div className="d-grid gap-2">
-                            <Button onClick={hendleSubmit} variant="primary" size="md">SEND</Button>
-                        </div>
+                                <Form.Control type="text" placeholder="Mobile Number"name="mobileNumber" onChange={(e)=>setMobile(e.target.value)}/>
+                            </Form.Group>
+                        </Row>
+                        <Button onClick={hendleSubmit} className='w-100' type="submit">Submit</Button>
                     </Form>
+                    
                     <Row style={{marginTop:"50px"}}>
                         <Col lg={12}>
                             <Table striped bordered hover variant="success">

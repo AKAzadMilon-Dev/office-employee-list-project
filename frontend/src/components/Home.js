@@ -2,24 +2,25 @@ import React from 'react';
 import {Container, Row, Col, Form, Button, Card, Table, Alert} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const ActivityList = () => {
+const Home = () => {
   return (
-    <div style={{ background: "#112B3C"}}>
-        <Container >
-            <Row>
-                <Col lg={3}>
+    <div style={{ textAlign: "center", background: "#112B3C"}}>
+        <Alert >
+            <h3>Welcome To</h3>
+            <h1>Office Employee List Application</h1>
+        </Alert>
+        <Container>
+            <Row >
+                <Col lg={3} >
                     <Card style={{background:"#413F42"}}>
                     <Card.Img variant="top" src="./assets/images/men.jpg" />
-                        <Card.Body className='textStyle'>
-                            <Card.Title>Card Title</Card.Title>
+                        <Card.Body>
+                            {/* <Card.Title>Card Title</Card.Title>
                             <Card.Text>
                             Some quick example text to build on the card title and make up the bulk of
                             the card's content.
-                            </Card.Text>
+                            </Card.Text> */}
                             <div className="d-grid gap-2">
-                                <Link to='/'>
-                                    <Button className="w-100" variant="primary" size="lg">Home</Button>
-                                </Link>
                                 <Link to='/employeelist'>
                                     <Button className="w-100" variant="primary" size="lg">Employee List</Button>
                                 </Link>
@@ -36,35 +37,14 @@ const ActivityList = () => {
                                     <Button className="w-100" variant="primary" size="lg">Apply For Leave</Button>
                                 </Link>
                                 <Link to='/todaysclass'>
-                                    <Button active className="w-100" variant="primary" size="lg">Late List</Button>
+                                    <Button className="w-100" variant="primary" size="lg">Late List</Button>
                                 </Link>
                             </div>
                         </Card.Body>
                     </Card>
                 </Col>
                 <Col lg={9} >
-                    <Row style={{marginTop:"50px"}}>
-                        <Col lg={12}>
-                            <Table striped bordered hover variant="success">
-                            <thead>
-                                <tr>
-                                    <th>Active Name</th>
-                                    <th>Hour Take</th>
-                                    <th>Active Details</th>
-                                </tr>
-                            </thead>
-                            {/* {employee.map(item=>(
-                                <tbody key={item._id}>
-                                    <tr >
-                                        <td>{item.name}</td>
-                                        <td>{item.designation}</td>
-                                        <td>{item.officetime}</td>
-                                    </tr>
-                                </tbody>
-                            ))} */}
-                            </Table>
-                        </Col>
-                    </Row>
+                    <Card.Img variant="top" src="./assets/images/office.jpg" />
                 </Col>
             </Row>
         </Container>
@@ -72,4 +52,4 @@ const ActivityList = () => {
   )
 }
 
-export default ActivityList
+export default Home
