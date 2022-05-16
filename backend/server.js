@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose');
 const employeeListDetails = require('./models/employeeListModel.js')
+const todayClassDetails = require('./models/todayClassModel.js')
 var cors = require('cors')
 const app = express()
 
@@ -26,6 +27,16 @@ app.post('/', function (req, res) {
 app.get('/employee', async (req, res)=>{
   const employeeData = await employeeListDetails.find({})
   res.send(employeeData)
+})
+
+app.post('/', function (req, res){
+  const todayClass = {
+    batch: req.body.batch,
+    time: req.body.time,
+    room: req.body.room
+  }
+  const todayDetails = new todayClassDetails(todayClass)
+  todayDetails.save()
 })
 
 app.listen(8000, ()=>{
