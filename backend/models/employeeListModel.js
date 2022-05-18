@@ -1,15 +1,14 @@
-const mongoose = require('mongoose')
-const {Schema} = mongoose;
+import mongoose from 'mongoose';
 
-const employeeListSchema = Schema(
+const employeeListSchema = new mongoose.Schema(
     {
-        name: String,
-        designation: String,
-        officetime: String,
-        offday: String,
-        mobile: String
+        name: {type:String, required:true},
+        designation: {type:String, required:true},
+        officetime: {type:String, required:true},
+        offday: {type:String, required:true},
+        mobile: {type:Number, required:true}
     }
 )
 
 const EmployeeDetails = mongoose.model('employeeDetails',employeeListSchema)
-module.exports = EmployeeDetails
+export default EmployeeDetails

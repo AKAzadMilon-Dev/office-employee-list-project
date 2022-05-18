@@ -1,46 +1,27 @@
-const express = require('express')
-const mongoose = require('mongoose');
-const employeeListDetails = require('./models/employeeListModel.js')
-const todayClassDetails = require('./models/todayClassModel.js')
-var cors = require('cors')
+import express from 'express'
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import cors from "cors";
+import employeeRouter from './routes/employeeListRoutes.js';
 const app = express()
+dotenv.config()
+
+mongoose.connect(process.env.MONGODB_URL)
+.then(() => {
+  console.log("MongoDB connected");
+})
+.catch((error) => {
+  console.log("ami error achai",error);
+});
 
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect('mongodb+srv://newproject:newproject@cluster0.qm7pw.mongodb.net/newproject?retryWrites=true&w=majority',()=>{
-    console.log("DB Connected")
+app.use(employeeRouter);
+
+app.get("/", function (req, res) {
+  res.send("Hello World");
 });
-
-app.post('/', function (req, res) {
-  const employeeDetails = {
-    name:req.body.name,
-    designation:req.body.designation,
-    officetime:req.body.officetime,
-    offday:req.body.offday,
-    mobile:req.body.mobile
-  }
-  const detailsList = new employeeListDetails(employeeDetails)
-  detailsList.save()
-
-  const todayClass = {
-    batch: req.body.batch,
-    time: req.body.time,
-    room: req.body.room
-  }
-  const todayDetails = new todayClassDetails(todayClass)
-  todayDetails.save()
-})
-
-app.get('/employee', async (req, res)=>{
-  const employeeData = await employeeListDetails.find({})
-  res.send(employeeData)
-})
-
-app.get('/todayclasses', async (req, res)=>{
-  const todayClassData = await todayClassDetails.find({})
-  res.send(todayClassData)
-})
 
 app.listen(8000, ()=>{
     console.log("port 8000 running")

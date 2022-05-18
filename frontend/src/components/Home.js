@@ -1,6 +1,6 @@
 import React from 'react';
-import {Container, Row, Col, Form, Button, Card, Table, Alert} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import {Container, Row, Col, Card, Alert} from 'react-bootstrap';
+import SideBar from './SideBar';
 
 const Home = () => {
   return (
@@ -11,15 +11,16 @@ const Home = () => {
         </Alert>
         <Container>
             <Row >
-                <Col lg={3} >
+                <SideBar></SideBar>
+                {/* <Col lg={3} >
                     <Card style={{background:"#413F42"}}>
                     <Card.Img variant="top" src="./assets/images/men.jpg" />
                         <Card.Body>
-                            {/* <Card.Title>Card Title</Card.Title>
+                            <Card.Title>Card Title</Card.Title>
                             <Card.Text>
                             Some quick example text to build on the card title and make up the bulk of
                             the card's content.
-                            </Card.Text> */}
+                            </Card.Text>
                             <div className="d-grid gap-2">
                                 <Link to='/employeelist'>
                                     <Button className="w-100" variant="primary" size="lg">Employee List</Button>
@@ -42,7 +43,7 @@ const Home = () => {
                             </div>
                         </Card.Body>
                     </Card>
-                </Col>
+                </Col> */}
                 <Col lg={9} >
                     <Card.Img variant="top" src="./assets/images/office.jpg" />
                 </Col>

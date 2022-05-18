@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Container, Row, Col, Form, Button, Card, Table, Alert} from 'react-bootstrap';
+import {Container, Row, Col, Form, Table} from 'react-bootstrap';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import SideBar from './SideBar';
 
 const EmployeeList = () => {
     const [employee, setEmployee] = useState([])
@@ -11,7 +11,7 @@ const EmployeeList = () => {
     const [offday, setOffday] = useState('')
     const [mobile, setMobile] = useState('')
 
-    const hendleSubmit = async (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault()
         await axios.post('http://localhost:8000/',{
             name: name,
@@ -20,55 +20,24 @@ const EmployeeList = () => {
             offday: offday,
             mobile: mobile
         })
+        e.target.reset()
     }
 
     useEffect(()=>{
-        async function employeeData(){
-            const data = await axios.get('http://localhost:8000/employee')
-            setEmployee(data.data)
+        const employeeData = async()=>{
+            const {data} = await axios.get('http://localhost:8000/employee')
+            setEmployee(data)
         }
         employeeData()
-    })
+    },[employee])
 
   return (
     <div style={{ background: "#112B3C"}}>
         <Container >
             <Row>
-                <Col lg={3}>
-                    <Card style={{background:"#413F42"}}>
-                    <Card.Img variant="top" src="./assets/images/men.jpg" />
-                        <Card.Body className='textStyle'>
-                            <Card.Title>Card Title</Card.Title>
-                            <Card.Text>
-                            Some quick example text to build on the card title and make up the bulk of
-                            the card's content.
-                            </Card.Text>
-                            <div className="d-grid gap-2">
-                                <Link to='/'>
-                                    <Button className="w-100" variant="primary" size="lg">Home</Button>
-                                </Link>
-                                <Button active variant="primary" size="lg">Employee List</Button>
-                                <Link to='/todaysclass'>
-                                    <Button className="w-100" variant="primary" size="lg">Today's Class</Button>
-                                </Link>
-                                <Link to='/postactivity'>
-                                    <Button className="w-100" variant="primary" size="lg">Post Activity</Button>
-                                </Link>
-                                <Link to='/activitylist'>
-                                    <Button className="w-100" variant="primary" size="lg">Activity List</Button>
-                                </Link>
-                                <Link to='/todaysclass'>
-                                    <Button className="w-100" variant="primary" size="lg">Apply For Leave</Button>
-                                </Link>
-                                <Link to='/todaysclass'>
-                                    <Button className="w-100" variant="primary" size="lg">Late List</Button>
-                                </Link>
-                            </div>
-                        </Card.Body>
-                    </Card>
-                </Col>
+                <SideBar></SideBar>
                 <Col lg={9} >
-                    <Form className='textStyle'>
+                    <Form className='textStyle' onSubmit={handleSubmit}>
                         <Row className="mb-3">
                             <Form.Group as={Col} md="4">
                                 <Form.Label>Name</Form.Label>
@@ -95,7 +64,7 @@ const EmployeeList = () => {
                                 <Form.Control type="text" placeholder="Mobile Number"name="mobileNumber" onChange={(e)=>setMobile(e.target.value)}/>
                             </Form.Group>
                         </Row>
-                        <Button onClick={hendleSubmit} className='w-100' type="submit">Submit</Button>
+                        <input className='btn btn-primary w-100' type="submit" value="submit"/>
                     </Form>
                     
                     <Row style={{marginTop:"50px"}}>
