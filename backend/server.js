@@ -21,7 +21,7 @@ app.use(express.json())
 
 app.use('/',employeeRouter);
 app.use('/class',todayRouter);
-// app.use(activityRouter);
+app.use('/activity', activityRouter);
 
 app.get("/", function (req, res) {
   res.send("Hello World");

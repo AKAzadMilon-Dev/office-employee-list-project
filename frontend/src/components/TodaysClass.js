@@ -11,16 +11,21 @@ const TodaysClass = () => {
     const [room, setRoom] = useState('')
 
     const handleSubmit = async (e)=>{
-        console.log('Click')
         e.preventDefault()
-
-        let {data}=await axios.post('http://localhost:8000/class',{
+        await axios.post('http://localhost:8000/class',{
             batch: batch,
             time: time,
             room: room
         })
-        console.log(data)
     }
+
+    useEffect(()=>{
+        const classData = async ()=>{
+            const {data} = await axios.get('http://localhost:8000/class')
+            setTodayclass(data)
+        }
+        classData()
+    },[todayclass])
 
   return (
     <div style={{ background: "#112B3C"}}>
@@ -57,7 +62,7 @@ const TodaysClass = () => {
                                     <th>Room</th>
                                 </tr>
                             </thead>
-                            {/* {todayclass.map(item=>(
+                            {todayclass.map(item=>(
                                 <tbody key={item._id}>
                                     <tr >
                                         <td>{item.batch}</td>
@@ -65,7 +70,7 @@ const TodaysClass = () => {
                                         <td>{item.room}</td>
                                     </tr>
                                 </tbody>
-                            ))} */}
+                            ))}
                             </Table>
                         </Col>
                     </Row>

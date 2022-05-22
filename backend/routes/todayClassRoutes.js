@@ -15,4 +15,9 @@ todayRouter.post('/', async (req,res)=>{
     res.status(200).send(details)
 })
 
+todayRouter.get('/', async (req, res)=>{
+    const classdata = await TodayClassDetails.find({})
+    res.send(classdata)
+})
+
 export default todayRouter

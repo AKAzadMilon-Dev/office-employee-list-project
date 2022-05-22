@@ -8,5 +8,5 @@ const activitySchema = new mongoose.Schema(
     }
 )
 
-const ActivityDetails = mongoose.model('activityDetails',activitySchema)
+const ActivityDetails = mongoose.model('activityDetails',activitySchema);
 export default ActivityDetails
