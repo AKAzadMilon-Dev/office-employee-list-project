@@ -13,6 +13,7 @@ employeeRouter.post('/', async (req, res)=>{
     }
     const detailsList = await new EmployeeDetails(employeeDetails)
     detailsList.save()
+    res.send(detailsList)
   });
 
     employeeRouter.get('/employee', async (req, res)=>{

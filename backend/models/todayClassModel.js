@@ -1,13 +1,12 @@
-const mongoose = require('mongoose')
-const {Schema} = mongoose
+import mongoose from 'mongoose';
 
-const todayClassSchema = Schema(
+const todayClassSchema = new mongoose.Schema(
     {
-        batch: {type:String, required:true},
-        time: {type:String, required:true},
-        room: {type:String, required:true}
+        batch: String,
+        time: String,
+        room: String
     }
 )
 
-const TodayClassDetails = mongoose.model('todayclassdetails',todayClassSchema)
-module.exports = TodayClassDetails
+const TodayClassDetails = mongoose.model('todaydetails',todayClassSchema)
+export default TodayClassDetails

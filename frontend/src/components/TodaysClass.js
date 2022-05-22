@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {Container, Row, Col, Form, Button, Table} from 'react-bootstrap';
+import {Container, Row, Col, Form, Table} from 'react-bootstrap';
 import axios from 'axios';
 import SideBar from './SideBar';
 
@@ -11,21 +11,16 @@ const TodaysClass = () => {
     const [room, setRoom] = useState('')
 
     const handleSubmit = async (e)=>{
+        console.log('Click')
         e.preventDefault()
-        await axios.post('http://localhost:8000/',{
+
+        let {data}=await axios.post('http://localhost:8000/class',{
             batch: batch,
             time: time,
             room: room
         })
+        console.log(data)
     }
-
-    useEffect(()=>{
-        async function todayClassData(){
-            const todaydata = await axios.get('http://localhost:8000/todayclasses')
-            setTodayclass(todaydata.data)
-        }
-        todayClassData()
-    })
 
   return (
     <div style={{ background: "#112B3C"}}>
@@ -33,7 +28,7 @@ const TodaysClass = () => {
             <Row>
                 <SideBar></SideBar>
                 <Col lg={9} >
-                    <Form className='textStyle'>
+                    <Form className='textStyle' onClick={handleSubmit}>
                         <Row className="mb-3">
                             <Form.Group as={Col} md="6">
                                 <Form.Label>Batch</Form.Label>
@@ -50,7 +45,7 @@ const TodaysClass = () => {
                                 <Form.Control type="text" placeholder="Room" name="room" onChange={(e)=>setRoom(e.target.value)}/>
                             </Form.Group>
                         </Row>
-                        <Button onClick={handleSubmit} className='w-100' type="submit">Submit</Button>
+                        <input className='btn btn-primary w-100' type="submit" value="submit"/>
                     </Form>
                     <Row style={{marginTop:"50px"}}>
                         <Col lg={12}>
@@ -62,7 +57,7 @@ const TodaysClass = () => {
                                     <th>Room</th>
                                 </tr>
                             </thead>
-                            {todayclass.map(item=>(
+                            {/* {todayclass.map(item=>(
                                 <tbody key={item._id}>
                                     <tr >
                                         <td>{item.batch}</td>
@@ -70,7 +65,7 @@ const TodaysClass = () => {
                                         <td>{item.room}</td>
                                     </tr>
                                 </tbody>
-                            ))}
+                            ))} */}
                             </Table>
                         </Col>
                     </Row>

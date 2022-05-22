@@ -19,15 +19,13 @@ const ActivityList = () => {
                                     <th>Active Details</th>
                                 </tr>
                             </thead>
-                            {/* {employee.map(item=>(
-                                <tbody key={item._id}>
+                                <tbody >
                                     <tr >
-                                        <td>{item.name}</td>
-                                        <td>{item.designation}</td>
-                                        <td>{item.officetime}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
-                            ))} */}
                             </Table>
                         </Col>
                     </Row>

@@ -20,7 +20,6 @@ const EmployeeList = () => {
             offday: offday,
             mobile: mobile
         })
-        e.target.reset()
     }
 
     useEffect(()=>{

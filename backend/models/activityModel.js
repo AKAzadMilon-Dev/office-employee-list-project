@@ -1,13 +1,12 @@
-const mongoose = require('mongoose')
-const {Schema} = mongoose;
+import mongoose from 'mongoose';
 
-const activitySchema = Schema(
+const activitySchema = new mongoose.Schema(
     {
-        name: {type:String, required:true},
-        hour: {type:String, required:true},
-        details: {type:String, required:true},
+        name: String,
+        hour: String,
+        details: String
     }
 )
 
-const ActivityDetails = mongoose.model('employeeDetails',activitySchema)
-module.exports = ActivityDetails
+const ActivityDetails = mongoose.model('activityDetails',activitySchema)
+export default ActivityDetails
