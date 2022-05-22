@@ -5,6 +5,8 @@ import cors from "cors";
 import employeeRouter from './routes/employeeListRoutes.js';
 import todayRouter from './routes/todayClassRoutes.js';
 import activityRouter from './routes/activityRoutes.js';
+import AuthRouter from './routes/AuthRouter.js'
+
 const app = express()
 dotenv.config()
 
@@ -18,10 +20,12 @@ mongoose.connect(process.env.MONGODB_URL)
 
 app.use(cors())
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
 app.use('/',employeeRouter);
 app.use('/class',todayRouter);
 app.use('/activity', activityRouter);
+app.use('/api/auth', AuthRouter);
 
 app.get("/", function (req, res) {
   res.send("Hello World");
