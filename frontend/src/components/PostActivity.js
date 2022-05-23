@@ -55,7 +55,7 @@ const PostActivity = () => {
                             </div>
 
 
-                            <Col lg={12}>
+                            <Col lg={12} style={{marginTop:"50px"}}>
                             <Table striped bordered hover variant="success">
                             <thead>
                                 <tr>
@@ -64,15 +64,15 @@ const PostActivity = () => {
                                     <th>Room</th>
                                 </tr>
                             </thead>
-                            {activity.map(item=>(
-                                <tbody key={item._id}>
-                                    <tr >
-                                        <td>{item.name}</td>
-                                        <td>{item.hour}</td>
-                                        <td>{item.details}</td>
-                                    </tr>
-                                </tbody>
-                            ))}
+                                {activity.map(item=>(
+                                    <tbody key={item._id}>
+                                        <tr >
+                                            <td>{item.name}</td>
+                                            <td>{item.hour}</td>
+                                            <td>{item.details}</td>
+                                        </tr>
+                                    </tbody>
+                                ))}
                             </Table>
                         </Col>
                         </Row>
