@@ -33,7 +33,7 @@ const TodaysClass = () => {
             <Row>
                 <SideBar></SideBar>
                 <Col lg={9} >
-                    <Form className='textStyle' onClick={handleSubmit}>
+                    <Form className='textStyle' onSubmit={handleSubmit}>
                         <Row className="mb-3">
                             <Form.Group as={Col} md="6">
                                 <Form.Label>Batch</Form.Label>
@@ -60,6 +60,7 @@ const TodaysClass = () => {
                                     <th>Batch</th>
                                     <th>Time</th>
                                     <th>Room</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             {todayclass.map(item=>(
@@ -68,6 +69,7 @@ const TodaysClass = () => {
                                         <td>{item.batch}</td>
                                         <td>{item.time}</td>
                                         <td>{item.room}</td>
+                                        <td>Edit/Delete</td>
                                     </tr>
                                 </tbody>
                             ))}

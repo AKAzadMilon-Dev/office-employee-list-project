@@ -34,7 +34,7 @@ const PostActivity = () => {
             <Row>
                 <SideBar></SideBar>
                 <Col lg={9} >
-                    <Form className='w-100 mx-auto textStyle formStyle' onClick={handleSubmit}>
+                    <Form className='w-100 mx-auto textStyle formStyle' onSubmit={handleSubmit}>
                         <Row className="mb-3">
                             <Form.Group as={Col} md="6">
                                 <Form.Label>Active Name</Form.Label>

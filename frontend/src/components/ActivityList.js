@@ -17,6 +17,7 @@ const ActivityList = () => {
                                     <th>Active Name</th>
                                     <th>Hour Take</th>
                                     <th>Active Details</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                                 <tbody >
@@ -24,6 +25,7 @@ const ActivityList = () => {
                                         <td></td>
                                         <td></td>
                                         <td></td>
+                                        <td>Edit/Delete</td>
                                     </tr>
                                 </tbody>
                             </Table>

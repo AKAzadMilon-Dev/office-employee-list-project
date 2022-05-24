@@ -21,4 +21,16 @@ employeeRouter.post('/', async (req, res)=>{
     res.send(employeeData)
   })
 
+  employeeRouter.post('/employee/delete', (req, res)=>{
+    console.log(req.body.id)
+    EmployeeDetails.findByIdAndDelete(req.body.id, function (err, docs) {
+      if (err){
+          console.log(err)
+      }
+      else{
+          console.log("Deleted : ", docs);
+      }
+    });
+  });
+
   export default employeeRouter

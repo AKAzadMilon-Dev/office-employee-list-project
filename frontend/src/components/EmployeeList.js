@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Container, Row, Col, Form, Table} from 'react-bootstrap';
+import {Container, Row, Col, Form, Table, Button} from 'react-bootstrap';
 import axios from 'axios';
 import SideBar from './SideBar';
 
@@ -29,6 +29,13 @@ const EmployeeList = () => {
         }
         employeeData()
     },[employee])
+
+    const handleDelete = (id)=>{
+        console.log(id)
+        axios.post('http://localhost:8000/employee/delete',{
+            id:id
+        })
+    }
 
   return (
     <div style={{ background: "#112B3C"}}>
@@ -76,6 +83,7 @@ const EmployeeList = () => {
                                 <th>Office Time</th>
                                 <th>Off Day</th>
                                 <th>Mobile Number</th>
+                                <th>Action</th>
                                 </tr>
                             </thead>
                             {employee.map(item=>(
@@ -86,6 +94,10 @@ const EmployeeList = () => {
                                         <td>{item.officetime}</td>
                                         <td>{item.offday}</td>
                                         <td>{item.mobile}</td>
+                                        <td>
+                                            <Button variant="info">Edit</Button>{' '}
+                                            <Button variant="danger" onClick={()=>handleDelete(item._id)}>Delete</Button> 
+                                        </td>
                                     </tr>
                                 </tbody>
                             ))}
